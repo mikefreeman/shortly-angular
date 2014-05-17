@@ -1,1 +1,17 @@
+  <div class='info'>
+    Search: <input ng-model="query">
+    Sort by:
+    <select ng-model="orderProp">
+      <option value="visits">Visits</option>
+      <option value="lastVisited">Recently Visited</option>
+      <option value="createdAt">Recently Created</option>
+    </select>
+    <div class='link' ng-repeat="link in links| filter:query | orderBy:orderProp:true">
+      <img src='/redirect_icon.png'/>
+      <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
+      <div class='title'>{{link.title}}</div>
+      <div class='original'>{{link.url}}</div>
 
+      <a ng-href='/{{link.code}}' target='_self'>{{link.base_url}}/{{link.code}}</a>
+    </div>
+  </div>
